@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: m0-mtoken
+networks:
+  - id: 1
+    start_block: 0
+    contracts:
+      - name: MToken
+        address:
+          - 0x866A2BF4E572CbcF37D5071A7a58503Bfb36be1b
+        handler: src/EventHandlers.ts
+
+        events:
+          - event: AuthorizationCanceled(address indexed authorizer, bytes32 indexed nonce)
+            field_selection: &mtoken_selected_fields # define selected fields for reuse
+              transaction_fields: [hash]
+          - event: AuthorizationUsed(address indexed authorizer, bytes32 indexed nonce)
+            field_selection: *mtoken_selected_fields # reuse selected fields
+          - event: IndexUpdated(uint128 indexed index, uint32 indexed rate)
+            field_selection: *mtoken_selected_fields
+          - event: StartedEarning(address indexed account)
+            field_selection: *mtoken_selected_fields
+          - event: StoppedEarning(address indexed account)
+            field_selection: *mtoken_selected_fields
+
+unordered_multichain_mode: true
+preload_handlers: true

@@ -1,0 +1,90 @@
+type MToken_Approval {
+  id: ID!
+  account: String!
+  spender: String!
+  amount: BigInt!
+}
+
+type MToken_AuthorizationCanceled {
+  id: ID!
+  authorizer: String!
+  nonce: String!
+}
+
+type MToken_AuthorizationUsed {
+  id: ID!
+  authorizer: String!
+  nonce: String!
+}
+
+type MToken_EIP712DomainChanged {
+  id: ID!
+}
+
+type MToken_IndexUpdated {
+  id: ID!
+  index: BigInt!
+  rate: BigInt!
+}
+
+type MToken_StartedEarning {
+  id: ID!
+  account: String!
+}
+
+type MToken_StoppedEarning {
+  id: ID!
+  account: String!
+}
+
+type MToken_Transfer {
+  id: ID!
+  sender: String!
+  recipient: String!
+  amount: BigInt!
+}
+
+# Above types are auto-generated based on the events emitted by the MToken smart contract.
+
+type IndexUpdated {
+  id: String!
+  index: BigInt!
+  rate: BigInt!
+  blockNumber: Int! # BigInt -> Int, as HyperIndex uses Int for block numbers
+  blockTimestamp: Int! # BigInt -> Int, as HyperIndex uses Int for timestamps
+  transactionHash: String!
+}
+
+type StartedEarning {
+  id: String!
+  account: String!
+  blockNumber: Int!
+  blockTimestamp: Int!
+  transactionHash: String!
+}
+
+type StoppedEarning {
+  id: String!
+  account: String!
+  blockNumber: Int!
+  blockTimestamp: Int!
+  transactionHash: String!
+}
+
+type AuthorizationUsed {
+  id: String!
+  authorizer: String!
+  nonce: String!
+  blockNumber: Int!
+  blockTimestamp: Int!
+  transactionHash: String!
+}
+
+type AuthorizationCanceled {
+  id: String!
+  authorizer: String!
+  nonce: String!
+  blockNumber: Int!
+  blockTimestamp: Int!
+  transactionHash: String!
+}
