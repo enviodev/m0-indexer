@@ -4,6 +4,8 @@
 
 This repo migrates one of the subgraphs from the [M0 subgraphs repo](https://github.com/m0-foundation/subgraphs/tree/main) to [HyperIndex](https://docs.envio.dev/docs/HyperIndex/overview).
 
+![HyperIndex CLI](assets/image.png)
+
 ## Pre-requisites
 
 * [Node.js (v18 or newer)](https://nodejs.org/en/download/current)
