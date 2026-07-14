@@ -1,17 +1,12 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import {
-  MToken,
-  IndexUpdated,
-  StartedEarning,
-  StoppedEarning,
-  AuthorizationCanceled,
-  AuthorizationUsed,
-} from "generated";
+import { indexer, IndexUpdated, StartedEarning, StoppedEarning, AuthorizationCanceled, AuthorizationUsed } from "envio";
 import { makeEventId } from "./utils";
 
-MToken.AuthorizationCanceled.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "MToken", event: "AuthorizationCanceled" },
+  async ({ event, context }) => {
   const id = makeEventId(event.transaction.hash, event.logIndex);
 
   const entity: AuthorizationCanceled = {
@@ -24,9 +19,12 @@ MToken.AuthorizationCanceled.handler(async ({ event, context }) => {
   };
 
   context.AuthorizationCanceled.set(entity);
-});
+}
+);
 
-MToken.AuthorizationUsed.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "MToken", event: "AuthorizationUsed" },
+  async ({ event, context }) => {
   const id = makeEventId(event.transaction.hash, event.logIndex);
 
   const entity: AuthorizationUsed = {
@@ -39,9 +37,12 @@ MToken.AuthorizationUsed.handler(async ({ event, context }) => {
   };
 
   context.AuthorizationUsed.set(entity);
-});
+}
+);
 
-MToken.IndexUpdated.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "MToken", event: "IndexUpdated" },
+  async ({ event, context }) => {
   const id = makeEventId(event.transaction.hash, event.logIndex);
 
   const entity: IndexUpdated = {
@@ -54,9 +55,12 @@ MToken.IndexUpdated.handler(async ({ event, context }) => {
   };
 
   context.IndexUpdated.set(entity);
-});
+}
+);
 
-MToken.StartedEarning.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "MToken", event: "StartedEarning" },
+  async ({ event, context }) => {
   const id = makeEventId(event.transaction.hash, event.logIndex);
 
   const entity: StartedEarning = {
@@ -68,9 +72,12 @@ MToken.StartedEarning.handler(async ({ event, context }) => {
   };
 
   context.StartedEarning.set(entity);
-});
+}
+);
 
-MToken.StoppedEarning.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "MToken", event: "StoppedEarning" },
+  async ({ event, context }) => {
   const id = makeEventId(event.transaction.hash, event.logIndex);
 
   const entity: StoppedEarning = {
@@ -82,4 +89,5 @@ MToken.StoppedEarning.handler(async ({ event, context }) => {
   };
 
   context.StoppedEarning.set(entity);
-});
+}
+);

@@ -1,8 +1,5 @@
 import assert from "assert";
-import { 
-  TestHelpers,
-  MToken_Approval
-} from "generated";
+import { TestHelpers, MToken_Approval } from "envio";
 const { MockDb, MToken } = TestHelpers;
 
 describe("MToken contract Approval event tests", () => {
